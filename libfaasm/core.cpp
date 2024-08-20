@@ -123,6 +123,11 @@ void faasmLockStateWrite(const char* key)
     __faasm_lock_state_write(key);
 }
 
+void faasmLockStateWriteSize(const char* key, long dataLength){
+    __faasm_lock_state_write_size(key, dataLength);
+}
+
+
 void faasmUnlockStateWrite(const char* key)
 {
     __faasm_unlock_state_write(key);

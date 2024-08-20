@@ -21,6 +21,7 @@ set(PUBLIC_HEADERS
     faasm/shared_mem.h
     faasm/state.h
     faasm/time.h
+    faasm/serialization.h
 )
 
 set(LIB_FILES
@@ -33,6 +34,7 @@ set(LIB_FILES
     state.cpp
     time.cpp
     zygote.cpp
+    serialization.cpp
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "WASI")

@@ -91,6 +91,9 @@ HOST_IFACE_FUNC
 void __faasm_lock_state_write(const char* key);
 
 HOST_IFACE_FUNC
+void __faasm_lock_state_write_size(const char* key, long dataLength);
+
+HOST_IFACE_FUNC
 void __faasm_unlock_state_write(const char* key);
 
 HOST_IFACE_FUNC

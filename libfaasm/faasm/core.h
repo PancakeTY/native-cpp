@@ -138,6 +138,11 @@ extern "C"
     void faasmLockStateWrite(const char* key);
 
     /**
+     * Acquires a write lock for the given state, initiate the state if it does not exist
+     */
+    void faasmLockStateWriteSize(const char* key, long dataLength);
+
+    /**
      * Releases a write lock for the given state
      */
     void faasmUnlockStateWrite(const char* key);

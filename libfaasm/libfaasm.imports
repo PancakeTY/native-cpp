@@ -18,6 +18,7 @@ __faasm_read_state_offset_ptr
 __faasm_lock_state_read
 __faasm_unlock_state_read
 __faasm_lock_state_write
+__faasm_lock_state_write_size
 __faasm_unlock_state_write
 
 # Functions

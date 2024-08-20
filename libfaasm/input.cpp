@@ -1,9 +1,9 @@
 #include "faasm/input.h"
 #include "faasm/core.h"
+#include "faasm/serialization.h"
 
 #include <stdint.h>
 #include <string.h>
-#include <string>
 
 namespace faasm {
 const char* getStringInput(const char* defaultValue)
@@ -22,6 +22,15 @@ const char* getStringInput(const char* defaultValue)
     char* strIn = reinterpret_cast<char*>(inputBuffer);
 
     return strIn;
+}
+
+const std::map<std::string, std::string> getMapInput(){
+    long inputSize = faasmGetInputSize();
+    std::vector<uint8_t> inputBuffer(inputSize);
+    faasmGetInput(inputBuffer.data(), inputSize);
+    size_t index = 0;
+    auto deserializedMap = deserializeMap(inputBuffer, index);
+    return deserializedMap;
 }
 
 int getIntInput()
@@ -52,5 +61,11 @@ int* parseStringToIntArray(const char* strIn, int nInts)
     }
 
     return result;
+}
+
+bool all_elements_are_zero(const std::vector<uint8_t>& buffer) {
+    return std::all_of(buffer.begin(), buffer.end(), [](uint8_t value) {
+        return value == 0;
+    });
 }
 } // namespace faasm
