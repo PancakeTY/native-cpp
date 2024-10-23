@@ -223,6 +223,9 @@ extern "C"
 
     // Macro for defining zygotes (a default fallback noop is provided)
     int __attribute__((weak)) _faasm_zygote();
+
+    uint64_t faasmGetMicros();
+
 #define FAASM_ZYGOTE() int _faasm_zygote()
 
 #ifdef __cplusplus

@@ -194,4 +194,7 @@ int __faasm_s3_get_key_bytes(const char* bucketName,
                              const char* keyName,
                              void* keyBuffer,
                              int* keyBufferLen);
+
+HOST_IFACE_FUNC
+uint64_t __faasm_get_micros();
 #endif

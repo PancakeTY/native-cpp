@@ -16,10 +16,10 @@ int main(int argc, char* argv[])
     // std::cout << inputSentence << std::endl;
 
     std::string word;
-    if (inputSentence.empty()) {
-        printf("WordCount Split: No input sentence\n");
-        return 0;
-    }
+    // if (inputSentence.empty()) {
+    //     printf("WordCount Split: No input sentence\n");
+    //     return 0;
+    // }
     for (char x : inputSentence) {
         if (x == ' ') {
             if (!word.empty()) {

@@ -232,3 +232,8 @@ unsigned int getConfFlag(const char* key)
 {
     return __faasm_conf_flag(key);
 }
+
+// Get the current time in microseconds
+uint64_t faasmGetMicros(){
+    return __faasm_get_micros();
+}

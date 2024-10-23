@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
     // std::cout << inputWord << std::endl;
 
     int count = 0;
+    uint64_t start = faasmGetMicros();
 
     faasmLockStateWriteSize(inputWord.data(), 4);
     faasmPullState(inputWord.data(), 4);
@@ -56,5 +57,13 @@ int main(int argc, char* argv[])
     faasmWriteState(inputWord.data(), stateBuffer.data(), stateBuffer.size());
     faasmPushState(inputWord.data());
     faasmUnlockStateWrite(inputWord.data());
+
+    uint64_t end = faasmGetMicros();
+    uint64_t diff = end - start;
+    // Print start, end, and duration in microseconds
+    std::string output =
+      "wordcount_count_lock_input_size: 1 and duration:" + std::to_string(diff);
+
+    faasmSetOutput(output.c_str(), output.size());
     return 0;
 }
