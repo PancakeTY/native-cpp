@@ -76,6 +76,8 @@ int main(int argc, char* argv[])
     // std::cout << "Sensor ID: " << sensorId << ", Value: " << todoValue
     //           << std::endl;
 
+    uint64_t start = faasmGetMicros();
+    
     // Prepare the states
     std::pair<double, std::list<double>> statistics;
     faasmLockStateWriteSize(sensorId.data(), maximumStateLength);
@@ -113,6 +115,14 @@ int main(int argc, char* argv[])
       sensorId.data(), newStatisticsBytes.data(), newStatisticsBytes.size());
     faasmPushState(sensorId.data());
     faasmUnlockStateWrite(sensorId.data());
+
+    uint64_t end = faasmGetMicros();
+    uint64_t diff = end - start;
+
+    std::string output =
+      "sd_moving_avg_lock_input_size: 1 and duration:" + std::to_string(diff);
+
+    faasmSetOutput(output.c_str(), output.size());
 
     return 0;
 }

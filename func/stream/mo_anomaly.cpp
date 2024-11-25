@@ -78,6 +78,8 @@ int main(int argc, char* argv[])
     double score = std::stod(inputMap.at("score"));
     long timestamp = std::stol(inputMap.at("timestamp"));
 
+    uint64_t start = faasmGetMicros();
+
     // Prepare states of partitioned attribute 'key'
     std::list<double> pastScores;
     faasmLockStateWriteSize(machineId.data(), maximumStateLength);
@@ -115,5 +117,13 @@ int main(int argc, char* argv[])
       machineId.data(), newPastScoresBytes.data(), newPastScoresBytes.size());
     faasmPushState(machineId.data());
     faasmUnlockStateWrite(machineId.data());
+
+    uint64_t end = faasmGetMicros();
+    uint64_t diff = end - start;
+
+    std::string output =
+      "mo_anomaly_lock_input_size: 1 and duration:" + std::to_string(diff);
+
+    faasmSetOutput(output.c_str(), output.size());
     return 0;
 }
